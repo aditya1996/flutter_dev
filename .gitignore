@@ -1,0 +1,5 @@
+# Ignore Flutter installation
+flutter
+
+#DS Store file
+.DS_Store
