@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart'; // to use @required
+import 'package:flutter/foundation.dart';
 
 class Transaction {
   final String id;

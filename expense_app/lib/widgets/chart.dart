@@ -1,8 +1,8 @@
-import 'package:expense_app/widgets/chart_bar.dart';
-
-import '../models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import './chart_bar.dart';
+import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
@@ -11,7 +11,6 @@ class Chart extends StatelessWidget {
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
-      // generate a list with max 7 length while looping into it
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
@@ -28,7 +27,7 @@ class Chart extends StatelessWidget {
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum,
-      }; // .E gives us the weekday in format 'Mon' or 'Tue' etc
+      };
     }).reversed.toList();
   }
 
@@ -44,7 +43,6 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Padding(
-        // Use Padding instead of container if you on;y need to add padding to something
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -54,7 +52,9 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 data['day'],
                 data['amount'],
-                (data['amount'] as double) / totalSpending,
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
               ),
             );
           }).toList(),
