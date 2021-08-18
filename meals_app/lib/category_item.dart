@@ -11,7 +11,10 @@ class CategoryItem extends StatelessWidget {
     // const will let flutter know not to rebuild this again
     return Container(
       padding: const EdgeInsets.all(15),
-      child: Text(title),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.subtitle1,
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
           color.withOpacity(0.7),
